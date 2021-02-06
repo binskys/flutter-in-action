@@ -26,7 +26,9 @@ public class MainActivity extends FlutterActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler(
+       //flutter 更新之后 FlutterActivity 中没有 getFlutterView() 方法。
+        //解决方案：使用getFlutterEngine().getDartExecutor().getBinaryMessenger()代替。
+         new MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler(
           new MethodCallHandler() {
              @Override
              public void onMethodCall(MethodCall call, Result result) {
